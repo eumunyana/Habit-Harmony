@@ -57,19 +57,19 @@ Habit Harmony differentiates itself by:
 ## Getting Started
 To get started with Habit Harmony, follow these steps:
 
-### Clone the repository:
+### STEPS
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/eumunyana/Habit-Harmony.git
+   cd habit-harmony
+   
+2. Install dependencies:
+   ```bash
+   flutter pub get
 
-git clone https://github.com/your_username/habit-harmony.git
-cd habit-harmony
-
-**Install dependencies:**
-
-flutter pub get
-
-**Run the application:**
-
-flutter run
-
+3. Run the application:
+   ```bash
+   flutter run
 
 ## Authors
 
