@@ -1,7 +1,7 @@
 # Habit_Harmony_Mobile_App
 
 
-# Habit Harmony: Mobile App Overview
+# The App Overview
 
 Habit Harmony is a mobile application designed to empower users to cultivate positive and lasting behavioral changes through a simple, user-friendly, and gamified approach.
 
