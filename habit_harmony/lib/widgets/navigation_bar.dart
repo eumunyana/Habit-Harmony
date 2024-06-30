@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:habit_harmony/screens/add_habit_screen.dart';
+import 'package:habit_harmony/screens/habits_screen.dart';
+import 'package:habit_harmony/screens/settings_screen.dart';
+import 'package:habit_harmony/screens/home_screen.dart';
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -9,13 +15,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _pages = <Widget>[
-    // Replace with actual pages or widgets
-    Text('Home'),
-    Text('Habits'),
-    Text('Add'),
-    Text('Stats'),
-    Text('Settings'),
+  static final List<Widget> _pages = <Widget>[
+    const HomeScreen(),
+    const HabitsScreen(),
+    AddHabitScreen(),
+    const Text('Stats'),
+    const SettingsScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -28,7 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Habit Harmony'),
+        title: const Text('Habit Harmony'),
       ),
       body: Center(
         child: _pages.elementAt(_selectedIndex),

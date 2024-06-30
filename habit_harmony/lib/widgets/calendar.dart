@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class WeeklyCalendar extends StatelessWidget {
+  const WeeklyCalendar({super.key});
+
   @override
   Widget build(BuildContext context) {
     final today = DateTime.now();
