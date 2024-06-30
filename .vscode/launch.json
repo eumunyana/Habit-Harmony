@@ -1,0 +1,44 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Flutter",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart"
+        },
+
+        
+        {
+            "name": "habit_harmony",
+            "cwd": "Habit-Harmony\\habit_harmony",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "habit_harmony (profile mode)",
+            "cwd": "Habit-Harmony\\habit_harmony",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "habit_harmony (release mode)",
+            "cwd": "Habit-Harmony\\habit_harmony",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "Flutter (lib\\main.dart)",
+            "type": "dart",
+            "request": "launch",
+            "cwd": "Habit-Harmony\\habit_harmony",
+            "program": "lib\\main.dart"
+        }
+    ]
+}
