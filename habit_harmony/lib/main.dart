@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:habit_harmony/screens/add_habit_screen.dart';
-import 'package:habit_harmony/screens/habits_screen.dart';
-import 'package:habit_harmony/screens/settings_screen.dart';
 import 'package:habit_harmony/widgets/navigation_bar.dart';
 import 'package:provider/provider.dart';
-import 'package:habit_harmony/providers/appthemenotifier.dart';
-import 'package:habit_harmony/providers/habits_provider.dart';
+import 'providers/habits_provider.dart';
+import 'providers/appthemenotifier.dart';
+import 'screens/home_screen.dart';
+import 'screens/habits_screen.dart';
+import 'screens/add_habit_screen.dart';
+import 'screens/settings_screen.dart';
+import 'screens/signup_screen.dart';
+import 'screens/login_screen.dart';
+import 'screens/new_password_screen.dart';
+import 'screens/password_reset_screen.dart';
+import 'screens/stats_screen.dart';
+import 'screens/account_screen.dart';
+import 'screens/general_settings_screen.dart';
+import 'screens/notifications_screen.dart';
+import 'screens/privacy_screen.dart';
+import 'screens/help_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,6 +45,16 @@ class MyApp extends StatelessWidget {
               '/habits': (context) => const HabitsScreen(),
               '/add': (context) => AddHabitScreen(),
               '/settings': (context) => const SettingsScreen(),
+              '/signup': (context) => const SignUpScreen(),
+              '/login': (context) => const LoginScreen(),
+              '/new_password': (context) => const NewPasswordScreen(),
+              '/password_reset': (context) => const PasswordResetScreen(),
+              '/stats': (context) => const StatsScreen(),
+              '/account': (context) =>  AccountScreen(),
+              '/general_settings': (context) =>  GeneralSettingsScreen(),
+              '/notifications': (context) =>  NotificationsScreen(),
+              '/privacy': (context) =>  PrivacyScreen(),
+              '/help': (context) =>  HelpScreen(),
             },
           );
         },

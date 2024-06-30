@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/habits_provider.dart';
 import '../models/habit.dart';
+import '../screens/habits_screen.dart'; // Import the HabitsScreen
 
 class AddHabitScreen extends StatelessWidget {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _targetDaysController = TextEditingController();
 
-  AddHabitScreen({super.key});
+  AddHabitScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,12 +50,22 @@ class AddHabitScreen extends StatelessWidget {
 
     if (name.isNotEmpty && targetDays > 0) {
       Habit newHabit = Habit(name: name, completedDays: 0, targetDays: targetDays, completedDates: []);
+      
+      // Add habit to the provider
       Provider.of<HabitsProvider>(context, listen: false).addHabit(newHabit);
 
-      // Navigate back to HabitsScreen after adding the habit
-      Navigator.pop(context);
+      // Show snackbar to indicate success
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Habit added successfully!'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+
+      // Navigate back to HabitsScreen
+      Navigator.pushReplacementNamed(context, '/habits'); // Replace current route with HabitsScreen
     } else {
-      // Handle validation or show an error message
+      // Show error dialog if inputs are invalid
       showDialog(
         context: context,
         builder: (BuildContext context) {

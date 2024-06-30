@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:habit_harmony/providers/appthemenotifier.dart'; // Import theme notifier
+import 'package:habit_harmony/providers/appthemenotifier.dart';
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+  const SettingsScreen({Key? key}) : super(key: key);
 
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
@@ -39,40 +39,35 @@ class _SettingsScreenState extends State<SettingsScreen> {
             Icons.settings,
             'General Settings',
             () {
-              // Navigate to general settings screen or perform action
-              _navigateToSettings('General Settings');
+              _navigateToSettings('/general_settings');
             },
           ),
           _buildSettingsOption(
             Icons.notifications,
             'Notifications',
             () {
-              // Navigate to notifications settings screen or perform action
-              _navigateToSettings('Notifications');
+              _navigateToSettings('/notifications');
             },
           ),
           _buildSettingsOption(
             Icons.privacy_tip,
             'Privacy',
             () {
-              // Navigate to privacy settings screen or perform action
-              _navigateToSettings('Privacy');
+              _navigateToSettings('/privacy');
             },
           ),
           _buildSettingsOption(
             Icons.account_circle,
             'Account',
             () {
-              // Navigate to account settings screen or perform action
-              _navigateToSettings('Account');
+              _navigateToSettings('/account');
             },
           ),
           _buildSettingsOption(
             Icons.help,
             'Help',
             () {
-              // Navigate to help screen or perform action
-              _navigateToSettings('Help');
+              _navigateToSettings('/help');
             },
           ),
         ],
@@ -81,11 +76,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   Widget _buildSettingsOption(IconData icon, String title, void Function() onTap) {
-  return ListTile(
-    leading: Icon(icon),
-    title: Text(title),
-    onTap: onTap,
-  );
+    return ListTile(
+      leading: Icon(icon),
+      title: Text(title),
+      onTap: onTap,
+    );
   }
 
   void _toggleDarkMode(bool value) {
@@ -93,10 +88,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     Provider.of<AppThemeNotifier>(context, listen: false).updateTheme(themeMode);
   }
 
-  void _navigateToSettings(String settingsName) {
-    // Implement navigation logic here, e.g., use Navigator to push a new screen
-    // Example:
-    Navigator.pushNamed(context, '/$settingsName');
-    print('Navigating to $settingsName settings...');
+  void _navigateToSettings(String routeName) {
+    Navigator.pushNamed(context, routeName);
   }
 }

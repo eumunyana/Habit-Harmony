@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ResetCodeScreen extends StatelessWidget {
-  const ResetCodeScreen({super.key});
+  const ResetCodeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,10 +11,10 @@ class ResetCodeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const TextField(
+            TextField(
               decoration: InputDecoration(labelText: 'Reset Code'),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 // Handle code verification

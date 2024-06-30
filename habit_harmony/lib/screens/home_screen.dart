@@ -9,18 +9,20 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        WeeklyCalendar(),
-        SizedBox(height: 20),
-        GifAnimationWidget(), // Your GIF animation widget
-        SizedBox(height: 20),
-        Expanded(
-          flex: 2,
-          child: HabitList(),
-        ),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          WeeklyCalendar(),
+          SizedBox(height: 20),
+          GifAnimationWidget(), // Your GIF animation widget
+          SizedBox(height: 20),
+          SizedBox(
+            height: 400, // Adjust height as needed
+            child: HabitList(),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -67,6 +69,8 @@ class HabitList extends StatelessWidget {
     final today = DateTime.now();
 
     return ListView.builder(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
       itemCount: habits.length,
       itemBuilder: (context, index) {
         final habit = habits[index];

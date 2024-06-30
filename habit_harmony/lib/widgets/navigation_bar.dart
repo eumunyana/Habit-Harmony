@@ -4,6 +4,7 @@ import 'package:habit_harmony/screens/add_habit_screen.dart';
 import 'package:habit_harmony/screens/habits_screen.dart';
 import 'package:habit_harmony/screens/settings_screen.dart';
 import 'package:habit_harmony/screens/home_screen.dart';
+import 'package:habit_harmony/screens/stats_screen.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -19,7 +20,7 @@ class _MyHomePageState extends State<MyHomePage> {
     const HomeScreen(),
     const HabitsScreen(),
     AddHabitScreen(),
-    const Text('Stats'),
+    const StatsScreen(),
     const SettingsScreen(),
   ];
 
