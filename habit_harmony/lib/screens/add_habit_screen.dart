@@ -8,7 +8,7 @@ class AddHabitScreen extends StatelessWidget {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _targetDaysController = TextEditingController();
 
-  AddHabitScreen({Key? key}) : super(key: key);
+  AddHabitScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -49,8 +49,12 @@ class AddHabitScreen extends StatelessWidget {
     final int targetDays = int.tryParse(_targetDaysController.text.trim()) ?? 0;
 
     if (name.isNotEmpty && targetDays > 0) {
-      Habit newHabit = Habit(name: name, completedDays: 0, targetDays: targetDays, completedDates: []);
-      
+      Habit newHabit = Habit(
+          name: name,
+          completedDays: 0,
+          targetDays: targetDays,
+          completedDates: []);
+
       // Add habit to the provider
       Provider.of<HabitsProvider>(context, listen: false).addHabit(newHabit);
 
@@ -63,7 +67,8 @@ class AddHabitScreen extends StatelessWidget {
       );
 
       // Navigate back to HabitsScreen
-      Navigator.pushReplacementNamed(context, '/habits'); // Replace current route with HabitsScreen
+      Navigator.pushReplacementNamed(
+          context, '/habits'); // Replace current route with HabitsScreen
     } else {
       // Show error dialog if inputs are invalid
       showDialog(
@@ -71,7 +76,8 @@ class AddHabitScreen extends StatelessWidget {
         builder: (BuildContext context) {
           return AlertDialog(
             title: const Text('Error'),
-            content: const Text('Please enter valid habit name and target days.'),
+            content:
+                const Text('Please enter valid habit name and target days.'),
             actions: [
               TextButton(
                 onPressed: () {
