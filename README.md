@@ -75,4 +75,7 @@ To get started with Habit Harmony, follow these steps:
 
 - Pierrette Umutoniwase, Email: p.umutoniwa@alustudent.com
 - Esther Umunyana , Email: e.umunyana@alustudent.com
-- Beritha Niyotwagira , Email: b.niyotwagi@alustudent.com 
+- Beritha Niyotwagira , Email: b.niyotwagi@alustudent.com
+
+  ## Demo
+  https://screenrec.com/share/m28RYjeI0b
