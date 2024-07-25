@@ -5,11 +5,11 @@ import '../providers/habits_provider.dart';
 import '../widgets/GifAnimationWidget.dart'; // Import your GIF animation widget
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return const SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -28,6 +28,8 @@ class HomeScreen extends StatelessWidget {
 }
 
 class WeeklyCalendar extends StatelessWidget {
+  const WeeklyCalendar({super.key});
+
   @override
   Widget build(BuildContext context) {
     final today = DateTime.now();
@@ -62,6 +64,8 @@ class WeeklyCalendar extends StatelessWidget {
 }
 
 class HabitList extends StatelessWidget {
+  const HabitList({super.key});
+
   @override
   Widget build(BuildContext context) {
     final habitsProvider = Provider.of<HabitsProvider>(context);
@@ -70,7 +74,7 @@ class HabitList extends StatelessWidget {
 
     return ListView.builder(
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       itemCount: habits.length,
       itemBuilder: (context, index) {
         final habit = habits[index];

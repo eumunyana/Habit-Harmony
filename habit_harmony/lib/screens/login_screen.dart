@@ -1,7 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  Future<void> _login() async {
+    try {
+      await _auth.signInWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
+      Navigator.pushNamed(context, '/');
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.message ?? 'Login failed')),
+      );
+    }
+  }
+
+  Future<void> _googleSignIn() async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+
+      await _auth.signInWithCredential(credential);
+      Navigator.pushNamed(context, '/');
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Google sign-in failed')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,45 +58,55 @@ class LoginScreen extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        backgroundColor: Colors.green, // Use the app's primary color
+        backgroundColor: Colors.green,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'Welcome Back',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.green, // Use the app's primary color
+                color: Colors.green,
               ),
             ),
-            SizedBox(height: 20),
-            TextField(decoration: InputDecoration(labelText: 'Email')),
+            const SizedBox(height: 20),
             TextField(
-              decoration: InputDecoration(labelText: 'Password'),
+              controller: _emailController,
+              decoration: const InputDecoration(labelText: 'Email'),
+            ),
+            TextField(
+              controller: _passwordController,
+              decoration: const InputDecoration(labelText: 'Password'),
               obscureText: true,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                _handleLogin(context); // Call function to handle login
-              },
+              onPressed: _login,
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green, // Use the app's primary color
+                backgroundColor: Colors.green,
               ),
               child: const Text('Login'),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: _googleSignIn,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
+              ),
+              child: const Text('Sign in with Google'),
+            ),
+            const SizedBox(height: 20),
             TextButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/password_reset');
               },
               child: const Text('Forgot Password?'),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -69,17 +123,5 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void _handleLogin(BuildContext context) {
-    // Perform login logic, validate credentials, etc.
-    bool isAuthenticated = true; // Replace with actual authentication logic
-
-    if (isAuthenticated) {
-      Navigator.pushNamed(context, '/'); // Redirect to home screen on success
-    // ignore: dead_code
-    } else {
-      // Handle failed login
-    }
   }
 }

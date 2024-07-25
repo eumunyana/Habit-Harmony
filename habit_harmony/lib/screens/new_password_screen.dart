@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class NewPasswordScreen extends StatefulWidget {
-  const NewPasswordScreen({Key? key}) : super(key: key);
+  const NewPasswordScreen({super.key});
 
   @override
   _NewPasswordScreenState createState() => _NewPasswordScreenState();
@@ -30,7 +30,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'Set New Password',
               style: TextStyle(
                 fontSize: 24,
@@ -38,25 +38,25 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                 color: Colors.green, // Use the app's primary color
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: _newPasswordController,
-              decoration: InputDecoration(labelText: 'New Password'),
+              decoration: const InputDecoration(labelText: 'New Password'),
               obscureText: true,
             ),
             TextField(
               controller: _confirmPasswordController,
-              decoration: InputDecoration(labelText: 'Confirm Password'),
+              decoration: const InputDecoration(labelText: 'Confirm Password'),
               obscureText: true,
             ),
             if (_errorMessage != null) ...[
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(
                 _errorMessage!,
-                style: TextStyle(color: Colors.red),
+                style: const TextStyle(color: Colors.red),
               ),
             ],
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 _resetPassword(context);

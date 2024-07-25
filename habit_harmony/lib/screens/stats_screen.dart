@@ -5,7 +5,7 @@ import '../providers/habits_provider.dart';
 import '../models/habit.dart'; // Assuming you have this import for the Habit model
 
 class StatsScreen extends StatelessWidget {
-  const StatsScreen({Key? key}) : super(key: key);
+  const StatsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class StatsScreen extends StatelessWidget {
       length: 3, // Number of tabs
       child: Scaffold(
         appBar: AppBar(
-          title: Row(
+          title: const Row(
             children: [
               CircleAvatar(
                 backgroundImage: AssetImage('assets/icons/profile.png'), // Profile image path
@@ -28,7 +28,7 @@ class StatsScreen extends StatelessWidget {
               ),
             ],
           ),
-          bottom: TabBar(
+          bottom: const TabBar(
             tabs: [
               Tab(text: "Daily"),
               Tab(text: "Weekly"),
@@ -62,11 +62,11 @@ class StatsScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Summary Section
-                Text(
+                const Text(
                   "All Habits",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -75,7 +75,7 @@ class StatsScreen extends StatelessWidget {
                     _buildSummaryItem("Best Streak Day", "22"), // Placeholder value
                   ],
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -84,22 +84,22 @@ class StatsScreen extends StatelessWidget {
                     _buildSummaryItem("Failed", "0"), // Placeholder value
                   ],
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 // Graph Section
                 Text(
                   "Habits Comparison by $period",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 SizedBox(
                   height: 400, // Fixed height for the chart
                   child: _buildBarChart(habitsProvider.habits),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 // Habit List
                 ListView.builder(
                   shrinkWrap: true, // Allow ListView to take only the needed space
-                  physics: NeverScrollableScrollPhysics(), // Disable ListView's own scrolling
+                  physics: const NeverScrollableScrollPhysics(), // Disable ListView's own scrolling
                   itemCount: habitsProvider.habits.length,
                   itemBuilder: (context, index) {
                     final habit = habitsProvider.habits[index];
@@ -116,7 +116,7 @@ class StatsScreen extends StatelessWidget {
                           ),
                           Text(
                             "Completion: $completionPercentage%",
-                            style: TextStyle(color: Colors.grey),
+                            style: const TextStyle(color: Colors.grey),
                           ),
                         ],
                       ),
@@ -125,7 +125,7 @@ class StatsScreen extends StatelessWidget {
                         child: LinearProgressIndicator(
                           value: habit.completedDays / habit.targetDays,
                           backgroundColor: Colors.grey[200],
-                          valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+                          valueColor: const AlwaysStoppedAnimation<Color>(Colors.green),
                         ),
                       ),
                     );
@@ -145,12 +145,12 @@ class StatsScreen extends StatelessWidget {
       children: [
         Text(
           title,
-          style: TextStyle(fontSize: 14, color: Colors.grey),
+          style: const TextStyle(fontSize: 14, color: Colors.grey),
         ),
-        SizedBox(height: 4),
+        const SizedBox(height: 4),
         Text(
           value,
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ],
     );
@@ -158,13 +158,12 @@ class StatsScreen extends StatelessWidget {
 
   Widget _buildBarChart(List<Habit> habits) {
     List<ChartData> data = habits.map((habit) {
-      final completionPercentage = (habit.completedDays / habit.targetDays * 100).toStringAsFixed(1);
       return ChartData(habit.name, habit.completedDays.toDouble());
     }).toList();
 
     return SfCartesianChart(
-      primaryXAxis: CategoryAxis(),
-      series: <ChartSeries>[
+      primaryXAxis: const CategoryAxis(),
+      series: <CartesianSeries>[
         BarSeries<ChartData, String>(
           dataSource: data,
           xValueMapper: (ChartData data, _) => data.habitName,

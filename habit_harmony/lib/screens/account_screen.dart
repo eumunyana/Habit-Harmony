@@ -1,61 +1,63 @@
 import 'package:flutter/material.dart';
 
 class AccountScreen extends StatelessWidget {
+  const AccountScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Account Settings'),
+        title: const Text('Account Settings'),
       ),
       body: ListView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         children: [
           ListTile(
-            title: Text('Profile Information'),
-            subtitle: Text('View and edit profile'),
-            trailing: Icon(Icons.arrow_forward_ios),
+            title: const Text('Profile Information'),
+            subtitle: const Text('View and edit profile'),
+            trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               // Navigate to profile information settings or show profile information dialog
             },
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            title: Text('Change Password'),
-            trailing: Icon(Icons.arrow_forward_ios),
+            title: const Text('Change Password'),
+            trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               Navigator.pushNamed(context, '/password_reset');
             },
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            title: Text('Connected Accounts'),
-            subtitle: Text('Manage linked accounts'),
-            trailing: Icon(Icons.arrow_forward_ios),
+            title: const Text('Connected Accounts'),
+            subtitle: const Text('Manage linked accounts'),
+            trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               // Navigate to connected accounts settings or show connected accounts dialog
             },
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            title: Text('Delete Account'),
-            subtitle: Text('Permanently delete your account'),
-            trailing: Icon(Icons.arrow_forward_ios),
+            title: const Text('Delete Account'),
+            subtitle: const Text('Permanently delete your account'),
+            trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               // Navigate to delete account settings or show delete account dialog
             },
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            title: Text('Login'),
-            trailing: Icon(Icons.arrow_forward_ios),
+            title: const Text('Login'),
+            trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               Navigator.pushNamed(context, '/login');
             },
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            title: Text('Sign Up'),
-            trailing: Icon(Icons.arrow_forward_ios),
+            title: const Text('Sign Up'),
+            trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               Navigator.pushNamed(context, '/signup');
             },

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/habits_provider.dart';
 import '../models/habit.dart';
-import '../screens/habits_screen.dart'; // Import the HabitsScreen
+// Import the HabitsScreen
 
 class AddHabitScreen extends StatelessWidget {
   final TextEditingController _nameController = TextEditingController();
@@ -60,7 +60,7 @@ class AddHabitScreen extends StatelessWidget {
 
       // Show snackbar to indicate success
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Habit added successfully!'),
           duration: Duration(seconds: 2),
         ),

@@ -1,46 +1,48 @@
 import 'package:flutter/material.dart';
 
 class HelpScreen extends StatelessWidget {
+  const HelpScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Help'),
+        title: const Text('Help'),
       ),
       body: ListView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         children: [
           ListTile(
-            title: Text('FAQ'),
-            subtitle: Text('Frequently Asked Questions'),
-            trailing: Icon(Icons.arrow_forward_ios),
+            title: const Text('FAQ'),
+            subtitle: const Text('Frequently Asked Questions'),
+            trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               // Navigate to FAQ screen or show FAQ dialog
             },
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            title: Text('Contact Support'),
-            subtitle: Text('Get in touch with our support team'),
-            trailing: Icon(Icons.arrow_forward_ios),
+            title: const Text('Contact Support'),
+            subtitle: const Text('Get in touch with our support team'),
+            trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               // Navigate to contact support screen or show contact support dialog
             },
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            title: Text('User Guide'),
-            subtitle: Text('How to use the app'),
-            trailing: Icon(Icons.arrow_forward_ios),
+            title: const Text('User Guide'),
+            subtitle: const Text('How to use the app'),
+            trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               // Navigate to user guide screen or show user guide dialog
             },
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            title: Text('Feedback'),
-            subtitle: Text('Send us your feedback'),
-            trailing: Icon(Icons.arrow_forward_ios),
+            title: const Text('Feedback'),
+            subtitle: const Text('Send us your feedback'),
+            trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               // Navigate to feedback screen or show feedback dialog
             },
