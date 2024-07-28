@@ -11,23 +11,21 @@ class HabitsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("My Habits"),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.more_vert),
-            onPressed: () {
-              // Show options for editing or deleting habits
-            },
-          ),
-        ],
       ),
       body: Consumer<HabitsProvider>(
         builder: (context, habitsProvider, child) {
+          final habits = habitsProvider.habits;
+
+          if (habits.isEmpty) {
+            return Center(child: CircularProgressIndicator());
+          }
+
           return ListView.builder(
             padding: const EdgeInsets.all(16.0),
-            itemCount: habitsProvider.habits.length,
+            itemCount: habits.length,
             itemBuilder: (context, index) {
-              final Habit habit = habitsProvider.habits[index];
-              return _buildHabitDetailItem(context, habit, index);
+              final Habit habit = habits[index];
+              return _buildHabitDetailItem(context, habit, habitsProvider);
             },
           );
         },
@@ -41,19 +39,18 @@ class HabitsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHabitDetailItem(BuildContext context, Habit habit, int index) {
+  Widget _buildHabitDetailItem(BuildContext context, Habit habit, HabitsProvider habitsProvider) {
     return Container(
       margin: const EdgeInsets.only(bottom: 16.0),
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        //color: Colors.white,
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.2),
             spreadRadius: 2,
             blurRadius: 5,
-            offset: const Offset(0, 3), // changes position of shadow
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -72,13 +69,13 @@ class HabitsScreen extends StatelessWidget {
               IconButton(
                 icon: const Icon(Icons.edit),
                 onPressed: () {
-                  _showEditHabitDialog(context, habit, index);
+                  _showEditHabitDialog(context, habit, habitsProvider);
                 },
               ),
               IconButton(
                 icon: const Icon(Icons.delete),
                 onPressed: () {
-                  Provider.of<HabitsProvider>(context, listen: false).deleteHabit(index);
+                  habitsProvider.deleteHabit(habit.id);
                 },
               ),
             ],
@@ -94,7 +91,7 @@ class HabitsScreen extends StatelessWidget {
     );
   }
 
-  void _showEditHabitDialog(BuildContext context, Habit habit, int index) {
+  void _showEditHabitDialog(BuildContext context, Habit habit, HabitsProvider habitsProvider) {
     TextEditingController nameController = TextEditingController(text: habit.name);
     TextEditingController completedDaysController = TextEditingController(text: habit.completedDays.toString());
     TextEditingController targetDaysController = TextEditingController(text: habit.targetDays.toString());
@@ -133,9 +130,8 @@ class HabitsScreen extends StatelessWidget {
             TextButton(
               child: const Text("Save"),
               onPressed: () {
-                _editHabit(
-                  context,
-                  index,
+                habitsProvider.editHabit(
+                  habit.id,
                   nameController.text,
                   int.parse(completedDaysController.text),
                   int.parse(targetDaysController.text),
@@ -146,15 +142,6 @@ class HabitsScreen extends StatelessWidget {
           ],
         );
       },
-    );
-  }
-
-  void _editHabit(BuildContext context, int index, String newName, int newCompletedDays, int newTargetDays) {
-    Provider.of<HabitsProvider>(context, listen: false).editHabit(
-      index,
-      newName,
-      newCompletedDays,
-      newTargetDays,
     );
   }
 }

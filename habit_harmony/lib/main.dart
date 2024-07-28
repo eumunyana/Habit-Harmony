@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:habit_harmony/database_service.dart';
 import 'package:habit_harmony/firebase_options.dart';
 import 'package:habit_harmony/widgets/navigation_bar.dart';
 import 'package:provider/provider.dart';
@@ -38,7 +39,6 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AppThemeNotifier()),
-        ChangeNotifierProvider(create: (context) => HabitsProvider()),
         Provider<AuthenticationService>(
           create: (_) => AuthenticationService(FirebaseAuth.instance),
           dispose: (_, AuthenticationService service) => service.signOut(),
@@ -47,6 +47,8 @@ class MyApp extends StatelessWidget {
           create: (context) => context.read<AuthenticationService>().authStateChanges,
           initialData: null,
         ),
+        Provider(create: (_) => DatabaseService()),
+        ChangeNotifierProvider(create: (context) => HabitsProvider()), // Add this line
       ],
       child: Consumer<AppThemeNotifier>(
         builder: (context, themeNotifier, child) {

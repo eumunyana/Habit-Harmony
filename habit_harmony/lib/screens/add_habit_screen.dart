@@ -1,8 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/habits_provider.dart';
 import '../models/habit.dart';
-// Import the HabitsScreen
 
 class AddHabitScreen extends StatelessWidget {
   final TextEditingController _nameController = TextEditingController();
@@ -49,11 +49,14 @@ class AddHabitScreen extends StatelessWidget {
     final int targetDays = int.tryParse(_targetDaysController.text.trim()) ?? 0;
 
     if (name.isNotEmpty && targetDays > 0) {
+      final habitId = FirebaseFirestore.instance.collection('habits').doc().id;
       Habit newHabit = Habit(
-          name: name,
-          completedDays: 0,
-          targetDays: targetDays,
-          completedDates: []);
+        id: habitId,
+        name: name,
+        completedDays: 0,
+        targetDays: targetDays,
+        completedDates: [],
+      );
 
       // Add habit to the provider
       Provider.of<HabitsProvider>(context, listen: false).addHabit(newHabit);
@@ -67,8 +70,7 @@ class AddHabitScreen extends StatelessWidget {
       );
 
       // Navigate back to HabitsScreen
-      Navigator.pushReplacementNamed(
-          context, '/habits'); // Replace current route with HabitsScreen
+      Navigator.pushReplacementNamed(context, '/habits');
     } else {
       // Show error dialog if inputs are invalid
       showDialog(
@@ -76,8 +78,7 @@ class AddHabitScreen extends StatelessWidget {
         builder: (BuildContext context) {
           return AlertDialog(
             title: const Text('Error'),
-            content:
-                const Text('Please enter valid habit name and target days.'),
+            content: const Text('Please enter valid habit name and target days.'),
             actions: [
               TextButton(
                 onPressed: () {

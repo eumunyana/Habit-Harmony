@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:habit_harmony/widgets/GifAnimationWidget.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../providers/habits_provider.dart';
-import '../widgets/GifAnimationWidget.dart'; // Import your GIF animation widget
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -87,7 +87,7 @@ class HabitList extends StatelessWidget {
             value: isCompletedToday,
             onChanged: (bool? value) {
               if (value == true) {
-                habitsProvider.markHabitAsCompleted(index, DateTime(today.year, today.month, today.day));
+                habitsProvider.markHabitAsCompleted(index as String, DateTime(today.year, today.month, today.day));
               }
             },
           ),
